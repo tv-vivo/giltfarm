@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GiltFarm - apk</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e3e6f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            position: relative;
+        }
+
+        .loader {
+            border: 12px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 12px solid #3498db;
+            width: 100px;
+            height: 100px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .message {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .steps {
+            display: none;
+            font-size: 16px;
+            margin-top: 20px;
+            text-align: left;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #ccc;
+        }
+
+        .steps h3 {
+            margin-top: 0;
+            font-size: 18px;
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .steps ol {
+            padding: 0;
+            margin: 0;
+            list-style-type: decimal;
+            padding-left: 20px;
+        }
+
+        .steps ol li {
+            margin-bottom: 12px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .steps ol li::marker {
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .download-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Animación de entrada */
+        .steps {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="loader" id="loader"></div>
+        <div class="message" id="message">Preparando descarga de la aplicación...</div>
+        <div class="steps" id="steps">
+            <h3>Pasos para instalar la aplicación</h3>
+            <ol>
+                <li>Abre la carpeta de descargas en tu dispositivo.</li>
+                <li>Busca el archivo <strong>GiltFarm.apk</strong>.</li>
+                <li>Haz clic en el archivo para comenzar la instalación.</li>
+                <li>Si es necesario, activa la opción de "Orígenes desconocidos" en la configuración.</li>
+                <li>Sigue las instrucciones en pantalla para completar la instalación.</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Función para iniciar la descarga
+        function iniciarDescarga() {
+            const link = document.createElement('a');
+            link.href = '/GiltFarm.apk';  // Cambia esto a la URL de tu aplicación
+            link.download = 'GiltFarm.apk';
+            link.click();
+
+            // Oculta el loader y cambia el mensaje
+            const loader = document.getElementById('loader');
+            const message = document.getElementById('message');
+            const steps = document.getElementById('steps');
+
+            loader.style.display = 'none';
+            message.textContent = 'Se está descargando el aplicativo...';
+            steps.style.display = 'block';  // Muestra los pasos de instalación
+        }
+
+        // Inicia la descarga automática después de 2 segundos para simular la preparación
+        window.onload = function() {
+            setTimeout(() => {
+                iniciarDescarga();
+            }, 2000); // Simula el tiempo de preparación de la descarga
+        };
+    </script>
+</body>
+</html>
